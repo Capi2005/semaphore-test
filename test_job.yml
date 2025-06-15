@@ -1,15 +1,15 @@
 ---
-- name: Ejecutar whoami en todos los hosts
+- name: ver hostname en todos los hosts
   hosts: all
   become: true
   remote_user: capi
 
   tasks:
-    - name: Ir al directorio correspondiente
+    - name: Ejecutanto hostname
       shell:
-        cmd: "cd /etc/ && ls -alh passwd | egrep -v 'capi' | wc -l"
-      register: result_ls_alh_wc_l
+        cmd: "hostname"
+      register: result
 
-    - name: Mostrar resultado de ls -alh *-SO-passwd* | egrep -v "default" | wc -l
+    - name: Mostrar resultado de hostaname
       debug:
-        msg: "El número de archivos es {{ result_ls_alh_wc_l.stdout }}"
+        msg: "El número de archivos es {{ result.stdout }}"
