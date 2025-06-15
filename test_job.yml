@@ -9,7 +9,3 @@
       shell:
         cmd: "hostname"
       register: result
-
-    - name: Mostrar resultado de hostaname
-      debug:
-        msg: "El número de archivos es {{ result.stdout }}"
