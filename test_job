@@ -1,0 +1,14 @@
+---
+- name: Ejecutar whoami en todos los hosts
+  hosts: all
+  become: true
+  remote_user: capi
+
+  tasks:
+    - name: Mostrar el usuario actual con whoami
+      ansible.builtin.command: whoami
+      register: whoami_output
+
+    - name: Imprimir el resultado
+      ansible.builtin.debug:
+        var: whoami_output.stdout
