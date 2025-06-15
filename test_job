@@ -5,10 +5,11 @@
   remote_user: capi
 
   tasks:
-    - name: Mostrar el usuario actual con whoami
-      ansible.builtin.command: whoami
-      register: whoami_output
+    - name: Ir al directorio correspondiente
+      shell:
+        cmd: "cd /etc/ && ls -alh passwd | egrep -v 'capi' | wc -l"
+      register: result_ls_alh_wc_l
 
-    - name: Imprimir el resultado
-      ansible.builtin.debug:
-        var: whoami_output.stdout
+    - name: Mostrar resultado de ls -alh *-SO-passwd* | egrep -v "default" | wc -l
+      debug:
+        msg: "El número de archivos es {{ result_ls_alh_wc_l.stdout }}"
