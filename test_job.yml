@@ -1,11 +1,14 @@
 ---
-- name: ver hostname en todos los hosts
+- name: Ver hostname en todos los hosts
   hosts: all
   become: true
   remote_user: capi
 
   tasks:
-    - name: Ejecutanto hostname
-      shell:
-        cmd: "hostname"
+    - name: Ejecutando hostname
+      shell: hostname
       register: result
+
+    - name: Mostrar resultado
+      debug:
+        var: result.stdout
