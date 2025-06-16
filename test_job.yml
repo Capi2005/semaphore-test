@@ -1,7 +1,7 @@
 ---
 - name: Ver hostname en todos los hosts
   hosts: all
-  become: true
+  become: False
   remote_user: capi
 
   tasks:
